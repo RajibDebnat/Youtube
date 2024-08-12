@@ -12,8 +12,9 @@ import {
 } from "../utils/constant";
 
 function VideoCard({ video: { id: { videoId },snippet}}) {
-  console.log(snippet.thumbnails.high);
-  
+  // console.log(snippet.thumbnails.high);
+
+  // console.log(videoId,snippet)
   return (
     <Card
       sx={{

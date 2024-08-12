@@ -1,40 +1,68 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { CheckCircle } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { demoProfilePicture } from "../utils/constant";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Box, CardMedia } from "@mui/material";
+// import {Videos,ChannelC} from './'
+import Videos from "./Videos";
+import ChannelCard from "./ChannelCard";
+import { fetchFormApi } from "../utils/ApiFetchForm";
+function ChannelDetails() {
+  const { id } = useParams();
+  const [channelDetail, setChannelDetails] = useState(null);
 
-// import { Box } from "@mui/material";
-
-const ChannelCard = ({ channelDetail }) => {
+  
+  // console.log(getBanner)
+  const [videos, setVideos] = useState([]);
   console.log(channelDetail);
+  // brandingSettings image bannerExternalUrl
+
+  useEffect(() => {
+    fetchFormApi(`channels?part=snippet&id=${id}`).then((data) =>
+      setChannelDetails(data?.items[0])
+    );
+    fetchFormApi(`search?channelId=${id}&part=snippet&order=date`).then(
+      (data) => {
+        setVideos(data.items);
+      }
+    );
+  }, [id]);
+
   return (
-    <Box sx={{ boxShadow: "none", borderRadius: "20px" }}>
-      <Link to={`/channel/${channelDetail?.id?.channelId}`}>
-        <CardContent
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            color: "#fff",
+    <Box minHeight={"95vh"} sx={{ backgroundColor: "#000" }}>
+      <Box>
+        {/* <div
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(76,65,231,1) 0%, rgba(203,55,210,1) 56%, rgba(20,60,255,1) 100%, rgba(0,212,255,1) 100%)",
+            zIndex: 10,
+            height: "300px",
           }}
-        >
-          <CardMedia
-            image={`${
-              channelDetail?.snippet?.thumbnails?.high?.url ||
-              demoProfilePicture
-            }`}
-            alt={channelDetail?.snippet?.title || "channel Profile "}
-            sx={{ width: "180px", borderRadius: "50%", height: "180px", mb: 2 }}
-          />
-          <Typography variant="h6">{channelDetail?.snippet?.title} 
-          <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />
-          </Typography>
-        </CardContent>
-      </Link>
+        /> */}
+        <CardMedia
+        image={channelDetail?.brandingSettings?.image?.bannerExternalUrl}
+        alt={channelDetail?.snippet?.title}
+        sx={{
+          width: "100%",
+          // borderRadius: "50%",
+          height: "300px",
+          mb: 2,
+          // position:"absolute",
+          top:"0",
+          // marginTop: marginTop,
+          zIndex: 10,
+          objectFit:'fill',
+          boxShadow: "2px 3px 10px 0 black",
+        }}
+        />
+        <ChannelCard channelDetail={channelDetail} marginTop={"-110px"} id={id} />
+      </Box>
+      <Box display={"flex"} p="2" justifyContent={"center"}>
+        <Box sx={{ mr: { sm: "110px" } }} />
+
+        <Videos videos={videos}  />
+      </Box>
     </Box>
   );
-};
+}
 
-export default ChannelCard;
+export default ChannelDetails;

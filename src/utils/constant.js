@@ -12,13 +12,15 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 // import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+// import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PaidIcon from '@mui/icons-material/Paid';
 export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
 
 export const categories = [
   { name: 'New', icon: <HomeIcon />, },
   { name: 'JS Mastery', icon: <CodeIcon />, },
+  { name: 'Traversy Media', icon: <CodeIcon />, },
+  { name: 'NodeJS', icon: <CodeIcon />, },
   { name: 'Coding', icon: <CodeIcon />, },
   { name: 'WsCube Tech', icon: <DeveloperModeIcon />, },
   { name: 'ReactJS', icon: <CodeIcon />, },
