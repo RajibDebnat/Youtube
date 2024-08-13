@@ -19,6 +19,7 @@
     }, [id]);
     return (
       <>
+      
         <Box>
           <Stack direction={{ xs: "column",  }}>
             <Box sx={{ width: "100%", }}>
@@ -28,14 +29,30 @@
                 className="react-player"
                 controls
               />
-            </Box>
+              <Stack justifyContent={'space-between'} direction={ {xs:'column',md:'row'}} px={'15px'} gap={'10px'}>
+
             <Typography variant="h6" sx={{mt:'20px' ,fontWeight:"bold "}}>
             {snippet?.title} 
             </Typography>
-            <Stack direction="row" justifyContent={"space-between"} alignItems={'center'} gap={'15px'}>
+<Box sx={{display:'flex',gap:'15px', mb:'10px'}}>
+
+               <Typography variant="body1">
+                  { parseInt(statistics?.viewCount).toLocaleString()} views
+                </Typography>
+               <Typography variant="body1">
+                  { parseInt(statistics?.likeCount).toLocaleString()} views
+                </Typography>
+</Box>
+              </Stack>
+            </Box>
+
+            <Stack direction="row" justifyContent={'space-between'}  alignItems={'center'} gap={'15px'}>
+              <Box sx={{display:"flex",  alignItems:'center', gap:'10px', px:'15px' }}>
+
+            <Link to={`/channel/${snippet?.channelId}`}>
             <CardMedia
               image={`${
-            snippet?.thumbnails?.high?.url ||
+                snippet?.thumbnails?.high?.url ||
                 demoProfilePicture
               }`}
               alt={snippet?.title || "channel Profile "}
@@ -47,13 +64,16 @@
               
                 boxShadow: "2px 3px 10px 0 black",
               }}
-            />
-              <Typography sx={{fontSize:'18px', fontWeight:"bold" }}>{snippet?.channelTitle}</Typography>
+            /></Link>
+            <Link to={`/channel/${snippet?.channelId}`}>
+              <Typography sx={{fontSize:'18px', fontWeight:"bold" ,}}>{`${snippet?.channelTitle}`}</Typography>
+            </Link>
+              </Box>
+              <Stack>
+               
+              </Stack>
             </Stack>
-            <Box>
-            view {statistics?.viewCount} like
-              {statistics?.likeCount}
-            </Box>
+          
           </Stack>
         </Box>
       </>
