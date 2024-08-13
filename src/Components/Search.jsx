@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Stack } from "@mui/material";
-import { SideBar, Videos } from "./index";
+import { Box, Typography } from "@mui/material";
+import {  Videos } from "./index";
 import { fetchFormApi } from "../utils/ApiFetchForm";
 import { useParams } from "react-router-dom";
 

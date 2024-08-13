@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { NavBar,SearchFeed,Feed,VideoDetails,ChannelDetails } from './Components/index';
