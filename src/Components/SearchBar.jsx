@@ -10,7 +10,7 @@ const navigate = useNavigate('');
  e.preventDefault();
  console.log(searchTerm)
  if(searchTerm)navigate(`/search/${searchTerm}`)
-  setSearchTerm('');
+  // setSearchTerm('');
  }
   return (
     <Paper

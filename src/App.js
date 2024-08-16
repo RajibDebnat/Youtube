@@ -1,5 +1,6 @@
 import React  from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Error from './Components/Error';
 import { Box } from '@mui/material';
 import { NavBar,SearchFeed,Feed,VideoDetails,ChannelDetails } from './Components/index';
  const App =() => 
@@ -13,7 +14,7 @@ import { NavBar,SearchFeed,Feed,VideoDetails,ChannelDetails } from './Components
          <Route path='/channel/:id' exact element={<ChannelDetails/>}/>   
          <Route path='/search/:serchTerm' exact element={<SearchFeed/>}/>   
          <Route path='/' exact element={<Feed/>}/>   
-         <Route/>   
+         <Route path='*' element={<Error/>}/>   
         </Routes>
     </Box>
     </BrowserRouter>
