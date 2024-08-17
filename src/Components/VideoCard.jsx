@@ -28,7 +28,7 @@ function VideoCard({ video: { id: { videoId },snippet}}) {
         <CardMedia
           image={snippet?.thumbnails?.high?.url ||snippet?.thumbnails?.default?.url }
           alt={snippet?.title}
-          sx={{ width:{md:358,xs:'100%'}, height: 180 }}
+          sx={{ width:{md:358,xs:'100%'}, height: 180,objectFit:"fill"}}
         />
       </Link>
       <CardContent sx={{ backgroundColor: "#1e1e1e",  width: { md: "320px", xs: "100%" }  }}>
