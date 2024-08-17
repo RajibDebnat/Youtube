@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Typography, Stack } from "@mui/material";
 import { SideBar, Videos } from "./index";
 import { fetchFormApi } from "../utils/ApiFetchForm";
-import { Skeleton } from "@mui/material";
+// import { Skeleton } from "@mui/material";
 import SkelitonComponent from "./SkelitonComponent";
 
 function Feed() {
@@ -14,6 +14,7 @@ function Feed() {
     setIsFetching(true);
     fetchFormApi(`search?part=snippet&q=${selectedCategory}`)
       .then((data) => {
+        console.log(data)
         setVideos(data.items);
         setIsFetching(false);
       })

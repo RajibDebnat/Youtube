@@ -3,18 +3,25 @@ import { fetchFormApi } from '../utils/ApiFetchForm'
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Stack,Box,Typography } from '@mui/material'
-function ReletedVideos() {
-    const [relatedVideos,setRelatedVideos] = useState('');
-    const {id} = useParams();
-    console.log(relatedVideos)
-    useEffect(() => {
-        // Fetch related videos using the dynamic video ID from the URL
-        fetchFormApi(`search?relatedToVideoId=${id}&part=id,snippet&type=video`)
-          .then((data) => setRelatedVideos(data))
-          .catch((error) => console.error('Error fetching related videos:', error));
-      }, [id]);
+import VideoCard from './VideoCard'
+function ReletedVideos({suggestedVideo}) {
+    
+
+  console.log(suggestedVideo)
+   
   return (
-    <div>ReletedVideos</div>
+    <Box  sx={{padding:{md:0,xs:'20px'},}} >
+      <Stack   direction="row" flexWrap="wrap" justifyContent={'center'} gap={2} >
+
+{
+  suggestedVideo.map(data =><Box>
+    <VideoCard video={data}/>
+
+  </Box>)
+}
+
+    </Stack>
+    </Box>
   )
 }
 

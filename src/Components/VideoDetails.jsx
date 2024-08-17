@@ -11,7 +11,7 @@ import { CardMedia } from "@mui/material";
 import ReletedVideos from "./ReletedVideos";
 function VideoDetails() {
   const [videoDetail, setVideoDetail] = useState("");
- const [suggestedVideo, setSuggestedVideo] =useState('')
+ const [suggestedVideo, setSuggestedVideo] =useState([])
   const { snippet, statistics } = videoDetail;
   const { id } = useParams();
 
@@ -22,7 +22,7 @@ function VideoDetails() {
       setVideoDetail(data.items[0])
     );
     fetchFormApi(`search?relatedToVideoId=${id}&part=id,snippet&type=video`).then((data) =>
-     console.log(data)
+     setSuggestedVideo(data.items)
     );
   }, [id]);
   return (
@@ -96,7 +96,8 @@ function VideoDetails() {
           </Stack>
         </Stack>
       </Box>
-      <ReletedVideos />
+
+      <ReletedVideos suggestedVideo = {suggestedVideo} />
     </>
   );
 }
